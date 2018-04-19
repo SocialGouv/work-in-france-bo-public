@@ -18,7 +18,7 @@ describe('GET /api/v1/apt_validity_check/:ds_id/:date', () => {
         should.not.exist(err)
         res.status.should.equal(200)
         res.type.should.equal('application/json')
-        res.body.status.should.eql('success')
+        res.body.status.should.eql('valid')
         res.body.data.length.should.eql(1)
         res.body.data[0].should.include.keys(
           'ds_id',
@@ -39,10 +39,10 @@ describe('GET /api/v1/apt_validity_check/:ds_id/:date', () => {
       .get('/api/v1/apt_validity_check/0000000000/0000-00-00')
       .end((err, res) => {
         should.not.exist(err)
-        res.status.should.equal(404)
+        res.status.should.equal(200)
         res.type.should.equal('application/json')
-        res.body.status.should.eql('not found')
-        res.body.message.should.eql('Invalid APT.')
+        res.body.status.should.eql('invalid')
+        res.body.data.length.should.eql(0)
         done()
       })
   })

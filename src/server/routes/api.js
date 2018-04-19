@@ -14,17 +14,9 @@ const BASE_URL = `/api/v1/apt_validity_check`
 router.get(`${BASE_URL}/:ds_id/:date`, async (ctx) => {
   try {
     const data = await apt.getFromJson(ctx.params.ds_id, ctx.params.date)
-    if (data.length) {
-      ctx.body = {
-        status: 'success',
-        data: data,
-      }
-    } else {
-      ctx.status = 404
-      ctx.body = {
-        status: 'not found',
-        message: 'Invalid APT.',
-      }
+    ctx.body = {
+      status: data.length ? 'valid' : 'invalid',
+      data: data,
     }
   } catch (err) {
     console.log(err)
