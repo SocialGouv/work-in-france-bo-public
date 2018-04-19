@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/SocialGouv/work-in-france-bo-public#readme",
   "dependencies": {
+    "@koa/cors": "^2.2.1",
     "koa": "^2.5.0",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0"
