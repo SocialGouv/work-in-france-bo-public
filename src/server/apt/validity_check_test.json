@@ -1,0 +1,22 @@
+[
+  {
+    "ds_id": 12345,
+    "siret": "11223344556677",
+    "prenom": "*j****",
+    "nom": "*o***",
+    "date_de_naissance": "1978-12-20",
+    "has_expired": false,
+    "date_de_debut_apt": "2018-04-03",
+    "date_de_fin_apt": "2018-05-20"
+  },
+  {
+    "ds_id": 67890,
+    "siret": "88990011223344",
+    "prenom": "*e***",
+    "nom": "*a***",
+    "date_de_naissance": "1995-06-03",
+    "has_expired": false,
+    "date_de_debut_apt": "2018-02-13",
+    "date_de_fin_apt": "2019-02-12"
+  }
+]
