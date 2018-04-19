@@ -9,7 +9,7 @@ const BASE_URL = `/api/v1/apt_validity_check`
 
 /**
  * Check the validity of an APT (autorisation provisoire de travail) identified
- * by the given demarches-simplifiees.fr's ID and applicant's bithday date.
+ * by the given demarches-simplifiees.fr's ID and applicant's birthday date.
  */
 router.get(`${BASE_URL}/:ds_id/:date`, async (ctx) => {
   try {
