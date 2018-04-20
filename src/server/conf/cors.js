@@ -4,6 +4,7 @@
 const validOrigins = [
   'http://localhost:8080',
   'http://192.168.1.11:8080',
+  'https://workinfrance.beta.gouv.fr',
 ]
 
 function originIsValid (origin) {
