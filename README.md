@@ -26,6 +26,7 @@ Puis :
 
 ```shell
 $ docker run -p 1337:1337 -v ~/Desktop/validity_check.json:/app/src/server/apt/validity_check.json wif-bo-public
+$ docker run --restart=always -d -p 1337:1337 -v ~/Desktop/validity_check.json:/app/src/server/apt/validity_check.json wif-bo-public
 ```
 
 ### 2) Ou en local
