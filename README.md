@@ -4,7 +4,9 @@
 
 Ce dépôt de code contient le back office public de Work in France.
 
-## Installation de l'environnement de développement avec Docker
+Projet Node.js avec `Node v9` et `npm 5`.
+
+## Environnement de développement
 
 Pour construire l'image Docker :
 
@@ -12,29 +14,35 @@ Pour construire l'image Docker :
 $ docker build -t wif-bo-public .
 ```
 
-Pour lancer une instance de l'image avec les fichiers `validity_check.json` et `stats.json` montés en volumes :
+Pour lancer une instance de l'image :
 
 ```shell
+$ docker run -p 1337:1337 --name wif_bo_public wif-bo-public
+
+# Avec les fichiers `validity_check.json` et `stats.json` montés en volumes.
 $ docker run -p 1337:1337 --name wif_bo_public -v ~/Desktop/validity_check.json:/app/src/server/apt/validity_check.json -v ~/Desktop/stats.json:/app/src/server/public/stats.json wif-bo-public
 ```
 
-## Lancement de l'instance Docker en production
+Pour re-lancer l'instance de l'image :
+
+```shell
+$ docker start -ai wif_bo_public
+```
+
+Pour lancer les tests :
+
+```shell
+docker exec -t wif_bo_public npm test
+```
+
+## Environnement de production
+
+```shell
+$ docker build -t wif-bo-public .
+```
+
+Pour lancer une instance de l'image avec les fichiers `validity_check.json` et `stats.json` montés en volumes (en production ces derniers sont générés par le [back-office privé](https://github.com/SocialGouv/work-in-france-bo)) :
 
 ```shell
 $ sudo docker run --restart=always -d -p 1337:1337 -v $PWD/validity_check.json:/app/src/server/apt/validity_check.json -v $PWD/stats.json:/app/src/server/public/stats.json wif-bo-public
-```
-
-## Environnement de développement en local
-
-Projet Node.js avec `Node v9.11.1` et `npm 5.8.0`.
-
-```shell
-# Installer les dépendances.
-$ npm install
-
-# Lancer le serveur web.
-$ npm run start
-
-# Lancer les tests unitaires.
-$ npm test
 ```

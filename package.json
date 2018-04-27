@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./src/server/index.js",
-    "test": "mocha ./test/**/*.test.js"
+    "test": "PORT=1338 mocha ./test/**/*.test.js"
   },
   "repository": {
     "type": "git",
