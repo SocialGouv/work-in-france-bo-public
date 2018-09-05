@@ -29,6 +29,8 @@ const getFromJsons = (dsId, birthdayDateStr) => {
   });
 };
 
+const hasExpired = date => new Date(date) < new Date();
+
 /**
  * Read a JSON file to find the data of an APT (autorisation provisoire de travail)
  * identified by the given demarches-simplifiees's ID and applicant's birthday date.
@@ -45,10 +47,12 @@ function getFromJson(dsId, birthdayDateStr, jsonPath) {
         reject(err);
       } else {
         let jsonData = JSON.parse(data);
-        let result = jsonData.filter(
-          item =>
-            item.ds_id === dsId && item.date_de_naissance === birthdayDateStr
-        );
+        let result = jsonData
+          .filter(
+            item =>
+              item.ds_id === dsId && item.date_de_naissance === birthdayDateStr
+          )
+          .filter(item => !hasExpired(item.date_de_fin_apt));
         resolve(result);
       }
     });
