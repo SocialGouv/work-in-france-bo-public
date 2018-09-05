@@ -1,16 +1,33 @@
-const fs = require('fs')
-const path = require('path')
-
+const fs = require("fs");
+const path = require("path");
 
 // This JSON file must be excluded from the repository:
 // it contains IDs that should not be exposed.
-let JSON_DATA = path.join(__dirname, 'validity_check.json')
+let JSON_PATH = path.join(__dirname, "production");
 
-if (process.env.NODE_ENV === 'test') {
+if (process.env.NODE_ENV === "test") {
   // The JSON file for unit tests.
-  JSON_DATA = path.join(__dirname, 'validity_check_test.json')
+  JSON_PATH = path.join(__dirname, "test");
 }
 
+const flatten = arrs => arrs.reduce((a, c) => [...a, ...c], []);
+
+const getFromJsons = (dsId, birthdayDateStr) => {
+  dsId = parseInt(dsId);
+  return new Promise((resolve, reject) => {
+    fs.readdir(JSON_PATH, (err, items) => {
+      resolve(
+        Promise.all(
+          items
+            .filter(item => item.match(/\.json$/))
+            .map(item =>
+              getFromJson(dsId, birthdayDateStr, path.join(JSON_PATH, item))
+            )
+        ).then(flatten)
+      );
+    });
+  });
+};
 
 /**
  * Read a JSON file to find the data of an APT (autorisation provisoire de travail)
@@ -20,25 +37,24 @@ if (process.env.NODE_ENV === 'test') {
  * @param {string} birthdayDateStr The applicant's birthday date.
  * @returns {Array} An array of 1 matching APT data, or an empty array when there is no result.
  */
-function getFromJson (dsId, birthdayDateStr) {
-  dsId = parseInt(dsId)
-  return new Promise(function (resolve, reject) {
-    fs.readFile(JSON_DATA, 'utf-8', (err, data) => {
+function getFromJson(dsId, birthdayDateStr, jsonPath) {
+  dsId = parseInt(dsId);
+  return new Promise((resolve, reject) => {
+    fs.readFile(jsonPath, "utf-8", (err, data) => {
       if (err) {
-        reject(err)
+        reject(err);
       } else {
-        let jsonData = JSON.parse(data)
+        let jsonData = JSON.parse(data);
         let result = jsonData.filter(
-          function (item) {
-            return item.ds_id === dsId && item.date_de_naissance === birthdayDateStr
-          }
-        )
-        resolve(result)
+          item =>
+            item.ds_id === dsId && item.date_de_naissance === birthdayDateStr
+        );
+        resolve(result);
       }
-    })
-  })
+    });
+  });
 }
 
 module.exports = {
-  getFromJson,
-}
+  getFromJsons
+};
