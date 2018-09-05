@@ -1,4 +1,4 @@
-# Work in France - Back office public
+# Work in France - Back office public [![CircleCI](https://circleci.com/gh/SocialGouv/work-in-france-bo-public.svg?style=svg)](https://circleci.com/gh/SocialGouv/work-in-france-bo-public)
 
 > Back office public de la plateforme de demande d'autorisations provisoires de travail.
 
