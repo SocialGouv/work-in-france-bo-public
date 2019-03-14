@@ -2,7 +2,7 @@
 
 > Back office public de la plateforme de demande d'autorisations provisoires de travail.
 
-Ce dépôt de code contient le back office public de Work in France. Ce back-office permet de fournir des statistiques ainsi qu'une API de verification des ATP.
+Ce dépôt de code contient le back office public de Work in France. Ce back-office permet de fournir des statistiques ainsi qu'une API de verification des APT.
 
 Projet Node.js avec `Node v9` et `npm 5`.
 
