@@ -2,27 +2,28 @@
 // https://github.com/koajs/cors/issues/12
 
 const validOrigins = [
-  'http://localhost:8080',
-  'http://192.168.1.11:8080',
-  'https://workinfrance.beta.gouv.fr',
-]
+  "http://localhost:8080",
+  "http://192.168.1.11:8080",
+  "https://workinfrance.beta.gouv.fr",
+  "http://work-in-france.incubateur.social.gouv.fr"
+];
 
-function originIsValid (origin) {
-  return validOrigins.indexOf(origin) !== -1
+function originIsValid(origin) {
+  return validOrigins.indexOf(origin) !== -1;
 }
 
-function verifyOrigin (ctx) {
-  const origin = ctx.headers.origin
+function verifyOrigin(ctx) {
+  const origin = ctx.headers.origin;
   if (!originIsValid(origin)) {
-    return false
+    return false;
   }
-  return origin
+  return origin;
 }
 
 const config = {
-  origin: verifyOrigin,
-}
+  origin: verifyOrigin
+};
 
 module.exports = {
-  config,
-}
+  config
+};
