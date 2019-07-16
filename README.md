@@ -1,4 +1,4 @@
-# Work in France - Back office public [![CircleCI](https://circleci.com/gh/SocialGouv/work-in-france-bo-public.svg?style=svg)](https://circleci.com/gh/SocialGouv/work-in-france-bo-public)
+# Work in France - Back office public [![CircleCI](https://circleci.com/gh/SocialGouv/work-in-france-bo-public.svg?style=svg)](https://circleci.com/gh/SocialGouv/work-in-france-bo-public) [![deprecated](http://badges.github.io/stability-badges/dist/deprecated.svg)](http://github.com/badges/stability-badges)
 
 > Back office public de la plateforme de demande d'autorisations provisoires de travail.
 
